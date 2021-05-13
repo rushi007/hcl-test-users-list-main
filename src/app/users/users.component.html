@@ -1,0 +1,36 @@
+<div class="users">
+  <div class="control-panel">
+    <form [formGroup]="filterFormGroup">
+      <label class="select">Select column to filter:
+        <select class="form-control" name="filterOptions" formControlName="filterOptions" (change)="changeFilterOption($event.target.value)">
+          <option *ngFor="let opt of options" [value]="opt.value">{{ opt.text }}</option>
+        </select>
+      </label>
+      <label class="input">Enter filter keywords:
+        <input type="text" class="form-control" formControlName="filterText" placeholder="filter keywords go here..." />
+      </label>
+    </form>
+  </div>
+  <div class="users-list-wrapper">
+    <table class="users-list">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>User Name</th>
+          <th>E-mail</th>
+          <th>Phone</th>
+          <th>Website</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let userData of usersData | async | filterUsers : filterOptions.value : filterText.value; ">
+          <td>{{ userData.name }}</td>
+          <td>{{ userData.username }}</td>
+          <td>{{ userData.email }}</td>
+          <td>{{ userData.phone }}</td>
+          <td>{{ userData.website }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
