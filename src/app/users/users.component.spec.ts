@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterUsersPipe } from '../pipes/filter-users.pipe';
 
 import { UsersComponent } from './users.component';
 
@@ -8,7 +11,8 @@ describe('UsersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      imports: [HttpClientModule, FormsModule, ReactiveFormsModule],
+      declarations: [ UsersComponent, FilterUsersPipe ]
     })
     .compileComponents();
   }));
@@ -21,5 +25,9 @@ describe('UsersComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have changeFilterOption function', () => {
+    expect(component.changeFilterOption).toBeTruthy();
   });
 });

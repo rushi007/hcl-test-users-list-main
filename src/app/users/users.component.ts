@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FilterOption } from './filter-option.interface';
 import { UsersService } from '../users.service';
 import { Observable } from 'rxjs';
-import { map, withLatestFrom, startWith, tap } from 'rxjs/operators';
-import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
+import { FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-users',
@@ -46,7 +45,7 @@ export class UsersComponent implements OnInit {
     private userService: UsersService,
     private formBuilder: FormBuilder
   ) { 
-    this.filterFormGroup = formBuilder.group({
+    this.filterFormGroup = this.formBuilder.group({
       filterText: [''],
       filterOptions: ['']
     });

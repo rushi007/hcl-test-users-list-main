@@ -23,7 +23,16 @@ describe('UsersService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should have getUserData function', () => {
+    expect(service.getUserData).toBeTruthy();
+  });
+
   it('should return users', () => {
-    // TODO: Write test by using `httpMock`
+    service.getUserData().subscribe(data => {
+      expect(data.usersData.length).toBe(10);
+    });
+
+    const req = httpMock.expectOne('https://jsonplaceholder.typicode.com/users');
+    expect(req.request.method).toEqual('GET');
   });
 });
